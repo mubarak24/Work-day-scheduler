@@ -1,14 +1,14 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+// Saves to local storage by with the event listener added to the id of save button. Then sets the value
+// ~ to target the siblings in the textarea on the document. You then set the attribute of the id element 
+// ~ to the parent to save. Then what is written is saved to local storage with its unique id when button is clicked
 $(function () {
-    // TODO: Add a listener for click events on the save button. This code should
-    // use the id in the containing time-block as a key to save the user input in
-    // local storage. HINT: What does `this` reference in the click listener
-    // function? How can DOM traversal be used to get the "hour-x" id of the
-    // time-block containing the button that was clicked? How might the id be
-    // useful when saving the description in local storage?
-    //
+  $(".saveBtn").on("click", function () {
+    var val = $(this).siblings("textarea").val();
+    var id = $(this).parent().attr("id");
+    localStorage.setItem(id, val);
+  });
+  });
+  
     setInterval(function () {
       const CurrentTime = dayjs().format('dddd,MMMM D');
       $("#currentDay").text(CurrentTime);
@@ -26,10 +26,4 @@ $(function () {
     const hour = timeblock.attr("id").split("-").pop();
     console.log(hour);
     });
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
-    //
-    // TODO: Add code to display the current date in the header of the page.
-  });
   
