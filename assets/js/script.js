@@ -13,6 +13,13 @@ $(function () {
       const CurrentTime = dayjs().format('dddd,MMMM D');
       $("#currentDay").text(CurrentTime);
     }, 1000);
+
+    // Prevents the page from reloading by setting the value for each time block
+    $(".time-block").each(function () {
+      var id = $(this).attr("id");
+      var val = localStorage.getItem(id);
+      $(this).children("textarea").val(val);
+    });
     // TODO: Add code to apply the past, present, or future class to each time
     // block by comparing the id to the current hour. HINTS: How can the id
     // attribute of each time-block be used to conditionally add or remove the
